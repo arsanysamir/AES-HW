@@ -1,0 +1,20 @@
+entity FA_test is
+end entity;
+
+architecture bench of FA_test is
+
+	component FA is
+		port(A,B,Cin: in bit;
+		     Cout,S: out bit);
+	end component;
+	
+	signal A_t, B_t,Cin_t, Cout_t,S_t: bit;
+	begin
+
+	uut: FA port map (A_t,B_t,Cin_t,Cout_t,S_t);
+	
+	A_t <=  '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns, '0' after 80 ns, '1' after 100 ns;
+	B_t <=  '0', '1' after 40 ns, '0' after 80 ns, '1' after 120 ns;
+	Cin_t <= '0', '1' after 80 ns;
+
+end architecture;
