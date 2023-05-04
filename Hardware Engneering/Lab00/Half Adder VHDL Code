@@ -1,0 +1,12 @@
+
+entity HA is
+	port (A,B: in bit;
+	      S: out bit;
+	      Co: out bit);
+		end HA;
+	architecture behavioral of HA is
+		begin
+
+		S <= A xor B;
+		Co <= A and B;
+		end behavioral;
