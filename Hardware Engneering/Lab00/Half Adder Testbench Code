@@ -1,0 +1,19 @@
+entity test is
+end entity;
+
+architecture bench of test is
+
+	component HA is
+		port(X,Y: in bit;
+		     Z,C: out bit);
+	end component;
+
+	signal A_t,B_t,S_t,C_t: bit;
+	begin
+
+	uut: HA port map (A_t,B_t,S_t,C_t);
+
+	A_t <= '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns;
+	B_t <= '0', '0' after 20 ns, '1' after 40 ns, '1' after 60 ns;
+
+end architecture;
