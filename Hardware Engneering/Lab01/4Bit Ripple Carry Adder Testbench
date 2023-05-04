@@ -1,0 +1,27 @@
+entity FOURFA_test is
+end entity;
+
+architecture bench of FOURFA_test is
+
+	component FOURFA is port
+		(A1,B1,A2,B2,A3,B3,A4,B4,Cin: in bit;
+	     	 S1,S2,S3,S4,Cout: out bit);
+	end component;
+	
+	signal A1_t,B1_t,A2_t,B2_t,A3_t,B3_t,A4_t,B4_t,Cin_t,S1_t,S2_t,S3_t,S4_t,Cout_t: bit;
+
+	begin
+
+		uut: FOURFA port map (A1_t,B1_t,A2_t,B2_t,A3_t,B3_t,A4_t,B4_t,Cin_t,S1_t,S2_t,S3_t,S4_t,Cout_t);
+
+		A1_t <=  '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns, '0' after 80 ns, '1' after 100 ns;
+		B1_t <=  '0', '1' after 40 ns, '0' after 80 ns, '1' after 120 ns;
+		Cin_t <= '0', '1' after 80 ns;
+		A2_t <=  '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns, '0' after 80 ns, '1' after 100 ns;
+		B2_t <=  '0', '1' after 40 ns, '0' after 80 ns, '1' after 120 ns;
+		A3_t <=  '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns, '0' after 80 ns, '1' after 100 ns;
+		B3_t <=  '0', '1' after 40 ns, '0' after 80 ns, '1' after 120 ns;
+		A4_t <=  '0', '1' after 20 ns, '0' after 40 ns, '1' after 60 ns, '0' after 80 ns, '1' after 100 ns;
+		B4_t <=  '0', '1' after 40 ns, '0' after 80 ns, '1' after 120 ns;
+
+	end architecture;
