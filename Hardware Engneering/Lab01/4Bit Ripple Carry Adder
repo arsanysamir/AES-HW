@@ -1,0 +1,21 @@
+entity FOURFA is
+	port(A1,B1,A2,B2,A3,B3,A4,B4,Cin: in bit;
+	     S1,S2,S3,S4,Cout: out bit);
+	end FOURFA;
+
+	architecture behavioral of FOURFA is
+
+		signal Cs1,Cs2,Cs3: bit;
+		
+		component FA port
+			(A,B,Cin: in bit;
+			 Cout,S: out bit);
+		end component;
+
+	begin
+
+		FA1: FA port map(A1,B1,Cin,Cs1,S1);
+		FA2: FA port map(A2,B2,Cs1,Cs2,S2);
+		FA3: FA port map(A3,B3,Cs2,Cs3,S3);
+		FA4: FA port map(A4,B4,Cs3,Cout,S4);
+	end architecture;
