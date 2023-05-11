@@ -1,0 +1,20 @@
+entity FA is
+	port(A,B,Cin: in bit;
+	     Cout,S: out bit);
+	end FA;
+
+	architecture behavioral of FA is
+	signal S1,C1, C2: bit;
+
+	component HA port
+		(A,B: in bit;
+		 S,Co: out bit);
+		end component;
+	begin
+
+	HA1: HA port map(A,B,S1,C1);
+	HA2: HA port map(S1, Cin, S, C2);
+	cout <= c1 or c2;
+ 
+	end architecture;
+		
