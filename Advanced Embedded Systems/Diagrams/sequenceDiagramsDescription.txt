@@ -6,3 +6,7 @@ Scenario 01:
 Scenario 02:
 
 If an emergency situation occur, Raspberry pi sends the control action command to the Arduino. The Arduino activate the L.E.D and the Buzzer. After given interval the Raspberry pi sends the request to activate the server motors in order to close the doors.
+
+
+
+Link to the sequence diagram editor in Lucid Charts:  https://lucid.app/lucidchart/f8febc0c-37f4-43c5-ac34-0eaadd5675f7/edit?viewport_loc=242%2C1262%2C2020%2C1016%2C0_0&invitationId=inv_07286040-9b17-4bc4-a857-0082390352de
