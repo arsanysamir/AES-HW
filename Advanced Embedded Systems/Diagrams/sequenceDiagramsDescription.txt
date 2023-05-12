@@ -1,0 +1,8 @@
+The sequence behavior can be divided in to two scenarios. The first scenario is the normal behavior. The second scenario is Emergency behavior. 
+
+Scenario 01:
+ The users launches the dedicated mobile/ computer application. Then the smartphone requests the subscribe request. Raspberry Pi acknowledge it. Then  the smartphone asks for the MQTT sender data request and the raspberry Pi forward it to Arduino.  The Arduino send back the gathered sensor data to the Raspberry pi. Raspberry pi send it to the subscribers.
+
+Scenario 02:
+
+If an emergency situation occur, Raspberry pi sends the control action command to the Arduino. The Arduino activate the L.E.D and the Buzzer. After given interval the Raspberry pi sends the request to activate the server motors in order to close the doors.
