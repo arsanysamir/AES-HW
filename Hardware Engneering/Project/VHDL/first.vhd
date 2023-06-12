@@ -7,8 +7,8 @@ entity Calculator is
         a, b: in std_logic_vector(3 downto 0);
         op: in std_logic_vector(1 downto 0);  -- 00: addition, 01: subtraction, 10: multiplication, 11: division
         result: out std_logic_vector(3 downto 0);
-        carry_out: out std_logic;
-        overflow: out std_logic
+        error: out std_logic
+        
     );
 end entity Calculator;
 
@@ -25,36 +25,32 @@ begin
         
         case op is
             when "00" =>  -- Addition operation
-                temp := a_signed + b_signed;
+                temp(3 downto 0) := a_signed + b_signed;
                 result <= std_logic_vector(temp(3 downto 0));
-                carry_out <= temp(4);
-                overflow <= '0';
+                error <= temp(4);
             when "01" =>  -- Subtraction operation
-                temp := a_signed - b_signed;
+                temp(3 downto 0) := a_signed - b_signed;
                 result <= std_logic_vector(temp(3 downto 0));
-                carry_out <= temp(4);
-                overflow <= '0';
+                error <= temp(4);
             when "10" =>  -- Multiplication operation
                 temp := a_signed * b_signed;
                 result <= std_logic_vector(temp(3 downto 0));
-                carry_out <= '0';
-                overflow <= '0';
+                error <= '0';
+                
             when "11" =>  -- Division operation
                 if b_signed /= 0 then
                     quotient := a_signed / b_signed;
                     remainder := a_signed rem b_signed;
                     result <= std_logic_vector(quotient(3 downto 0));
-                    carry_out <= remainder(0);
-                    overflow <= '0';
+                    error <= remainder(0);
+                    
                 else
                     result <= (others => 'X');  -- Indicate division by zero with 'X' output
-                    carry_out <= 'X';
-                    overflow <= '1';  -- Set overflow to indicate an error condition
+                    error <= '1';  -- Set overflow to indicate an error condition
                 end if;
             when others =>
                 result <= (others => 'X');
-                carry_out <= 'X';
-                overflow <= 'X';
+                error <= 'X';
         end case;
     end process;
 end architecture Behavioral;
