@@ -32,7 +32,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 entity decoderFSM is
     Port (
         clk : in STD_LOGIC;
-        resetIn : in STD_LOGIC;
+        reset : in STD_LOGIC;
         DecodeOut : in STD_LOGIC_VECTOR (3 downto 0);
         Key1Assigned : out STD_LOGIC;
         Key2Assigned : out STD_LOGIC;
@@ -56,7 +56,7 @@ begin
     process (clk)
     begin
         if rising_edge(clk) then
-            if resetIn = '1' then
+            if reset = '1' then
                 prev_key <= "0000";
                 key1_value <= "0000";
                 key2_value <= "0000";
@@ -65,23 +65,21 @@ begin
                 key2_assigned <= '0';
                 key3_assigned <= '0';
                 
-        
-                if DecodeOut /= prev_key then
-                    if key1_assigned = '0' then
+	    else
+		if key1_assigned = '0' then
                         key1_value <= DecodeOut;
                         key1_assigned <= '1';
-                    elsif key2_assigned = '0' then
+                elsif key2_assigned = '0' then
                         key2_value <= DecodeOut;
                         key2_assigned <= '1';
-                    elsif key3_assigned = '0' then
+                elsif key3_assigned = '0' then
                         key3_value <= DecodeOut(1 downto 0);
                         key3_assigned <= '1';
                     
-                    end if;
                 end if;
-                prev_key <= DecodeOut;
+        
             end if;
-        end if;
+	 end if;
     end process;
 
     Key1Assigned <= key1_assigned;
