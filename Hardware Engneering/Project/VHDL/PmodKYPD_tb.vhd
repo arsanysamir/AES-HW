@@ -1,74 +1,61 @@
-library IEEE;
-use IEEE.STD_LOGIC_1164.ALL;
-use IEEE.STD_LOGIC_ARITH.ALL;
-use IEEE.STD_LOGIC_UNSIGNED.ALL;
+LIBRARY IEEE;
+USE ieee.std_logic_1164.all;
 
-entity PmodKYPD_tb is
-end PmodKYPD_tb;
+ENTITY PmodKYPD_tb IS
+END PmodKYPD_tb;
 
-architecture Behavioral of PmodKYPD_tb is
+ARCHITECTURE behavioral OF PmodKYPD_tb IS
+  COMPONENT PmodKYPD
+    PORT (
+      clk     : IN STD_LOGIC;
+      reset : IN STD_LOGIC;
+      rows    : IN STD_LOGIC_VECTOR(3 DOWNTO 0);
+      Col : BUFFER STD_LOGIC_VECTOR(3 DOWNTO 0);
+      keys    : OUT STD_LOGIC_VECTOR(15 DOWNTO 0)
+    );
+  END COMPONENT;
 
-    -- Component Declarations
-    component PmodKYPD is
-        Port ( 
-            reset: in std_logic;
-            clk : in  STD_LOGIC;
-            LED1: out std_logic;
-            LED2: out std_logic;
-            LED3: out std_logic;
-            JA : inout  STD_LOGIC_VECTOR (7 downto 0);
-            an : out  STD_LOGIC_VECTOR (3 downto 0);
-            seg : out  STD_LOGIC_VECTOR (6 downto 0)
-        );
-    end component;
+  SIGNAL clk       : STD_LOGIC := '0';
+  SIGNAL reset   : STD_LOGIC := '1';
+  SIGNAL rows      : STD_LOGIC_VECTOR(3 DOWNTO 0) := (OTHERS => '1');
+  SIGNAL Col   : STD_LOGIC_VECTOR(3 DOWNTO 0);
+  SIGNAL keys      : STD_LOGIC_VECTOR(15 DOWNTO 0);
 
-    -- Signal Declarations
-    signal reset_signal : std_logic := '0';
-    signal clk_signal : std_logic := '0';
-    signal LED1_signal : std_logic;
-    signal LED2_signal : std_logic;
-    signal LED3_signal : std_logic;
-    signal JA_signal : STD_LOGIC_VECTOR (7 downto 0);
-    signal an_signal : STD_LOGIC_VECTOR (3 downto 0);
-    signal seg_signal : STD_LOGIC_VECTOR (6 downto 0);
+BEGIN
+  uut: PmodKYPD
+    PORT MAP (
+      clk => clk,
+      reset => reset,
+      rows => rows,
+      Col => Col,
+      keys => keys
+    );
 
-begin
+  clk_process: PROCESS
+  BEGIN
+    WHILE NOW < 1 us LOOP  -- Simulate for 1 micro s
+      clk <= NOT clk;
+      WAIT FOR 10 ns;
+    END LOOP;
+    WAIT;
+  END PROCESS;
 
-    -- Instantiate the DUT (Device Under Test)
-    DUT: PmodKYPD
-        port map (
-            reset => reset_signal,
-            clk => clk_signal,
-            LED1 => LED1_signal,
-            LED2 => LED2_signal,
-            LED3 => LED3_signal,
-            JA => JA_signal,
-            an => an_signal,
-            seg => seg_signal
-        );
+  stimulus_process: PROCESS
+  BEGIN
+    reset <= '0';
+    WAIT FOR 20 ns;
+    reset <= '1';
 
-    -- Stimulus Process
-    stim_proc: process
-    begin
-        -- Initialize inputs
-        reset_signal <= '1';
-        clk_signal <= '0';
-        JA_signal <= (others => '0');
-        
-        -- Wait for reset to be released
-        wait for 10 ns;
-        reset_signal <= '0';
+    WAIT FOR 50 ns;
+    rows <= "1101";
+    WAIT FOR 50 ns;
+    rows <= "0111";
+    WAIT FOR 50 ns;
+    rows <= "1011";
+    WAIT FOR 50 ns;
+    rows <= "1111";
 
-        -- Generate clock with 50% duty cycle
-        clk_signal <= '0';
-        wait for 5 ns;
-        clk_signal <= '1';
-        wait for 5 ns;
-        
-        -- Perform test scenario here
-        
-        wait;
-    end process;
+    WAIT;
+  END PROCESS;
 
-end Behavioral;
-
+END behavioral;
