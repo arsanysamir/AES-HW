@@ -66,7 +66,8 @@ begin
                 key3_assigned <= '0';
                 
 	    else
-		if key1_assigned = '0' then
+	       if DecodeOut /= prev_key then
+		        if key1_assigned = '0' then
                         key1_value <= DecodeOut;
                         key1_assigned <= '1';
                 elsif key2_assigned = '0' then
@@ -74,11 +75,11 @@ begin
                         key2_assigned <= '1';
                 elsif key3_assigned = '0' then
                         key3_value <= DecodeOut(1 downto 0);
-                        key3_assigned <= '1';
-                    
+                        key3_assigned <= '1';                    
                 end if;
-        
             end if;
+            prev_key <= DecodeOut;
+	 end if;
 	 end if;
     end process;
 

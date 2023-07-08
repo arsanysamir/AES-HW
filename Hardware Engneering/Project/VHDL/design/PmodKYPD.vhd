@@ -22,10 +22,10 @@ entity PmodKYPD is
     Port ( 
     reset: in std_logic;
 	clk : in  STD_LOGIC;
-	LED1: out std_logic;
-    LED2: out std_logic;
-    LED3: out std_logic;
-	JA : inout  STD_LOGIC_VECTOR (7 downto 0); -- PmodKYPD is designed to be connected to JA
+	LED1, LED2: out std_logic;
+    LED3, LED4: out std_logic;
+	JAcol : out  STD_LOGIC_VECTOR (3 downto 0); -- PmodKYPD is designed to be connected to JA
+JArow : in  STD_LOGIC_VECTOR (3 downto 0); -- PmodKYPD is designed to be connected to JA
     an : out  STD_LOGIC_VECTOR (3 downto 0);   -- Controls which position of the seven segment display to display
     seg : out  STD_LOGIC_VECTOR (6 downto 0)); -- digit to display on the seven segment display 
 end PmodKYPD;
@@ -35,7 +35,7 @@ architecture Behavioral of PmodKYPD is
 component decoderFSM is
     Port (
         clk : in STD_LOGIC;
-        resetIn : in STD_LOGIC;
+        reset : in STD_LOGIC;
         DecodeOut : in STD_LOGIC_VECTOR (3 downto 0);
         Key1Assigned : out STD_LOGIC;
         Key2Assigned : out STD_LOGIC;
@@ -71,15 +71,15 @@ end component;
 
 signal Decode: STD_LOGIC_VECTOR (3 downto 0);
 signal result: STD_LOGIC_VECTOR (3 downto 0);
-signal error: std_logic;
 signal key1, key2: STD_LOGIC_VECTOR (3 downto 0);
 signal key3: STD_LOGIC_VECTOR (1 downto 0);
 begin
 
-	C0: Decoder port map (clk=>clk, Row =>JA(7 downto 4), Col=>JA(3 downto 0), DecodeOut=> Decode);
+	C0: Decoder port map (clk=>clk, Row =>JArow, Col=>JAcol, DecodeOut=> Decode);
 --	C1: DisplayController port map (DispVal=>Decode, anode=>an, segOut=>seg );
-	C1: decoderFSM port map (clk=>clk, resetIn=>reset, DecodeOut => Decode, Key1Assigned =>LED1, Key2Assigned =>LED2, Key3Assigned =>LED3, Key1Value => Key1, Key2Value => Key2, Key3Value => Key3 );
-	C2: Calculator port map (a=>key1, b=>key2, op=>key3, resultOut=>result, errorOut=>error);
-    C3: DisplayController port map (DispVal=>result, anode=>an, segOut=>seg );
+	C2: decoderFSM port map (clk=>clk, reset=>reset, DecodeOut => Decode, Key1Assigned =>LED1, Key2Assigned =>LED2, Key3Assigned =>LED3, Key1Value => Key1, Key2Value => Key2, Key3Value => Key3 );
+	C3: Calculator port map (a=>key1, b=>key2, op=>key3, resultOut=>result, errorOut=>LED4);
+    	C4: DisplayController port map (DispVal=>result, anode=>an, segOut=>seg );
 end Behavioral;
+
 

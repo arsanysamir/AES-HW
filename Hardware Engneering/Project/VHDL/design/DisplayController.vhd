@@ -34,7 +34,7 @@ end DisplayController;
 architecture Behavioral of DisplayController is
 begin
 	-- only display the leftmost digit
-	anode<="0000";
+	anode<="1110";
 			
 
 	 with DispVal select
@@ -57,3 +57,4 @@ begin
 				"0111111" when others;
 	
 end Behavioral;
+
