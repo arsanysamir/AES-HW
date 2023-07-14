@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "FPGA_project_parts")(type "KiCad")(uri "C:/Users/Salie/Desktop/Studium/6. Semester/Hardware Engineering/Hardware Engineering Lab/Parts/FPGA_project_parts/footprints/FPGA_project_parts.pretty")(options "")(descr ""))
+)

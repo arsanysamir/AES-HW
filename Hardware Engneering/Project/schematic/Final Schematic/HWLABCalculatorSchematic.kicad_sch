@@ -1,0 +1,104 @@
+(kicad_sch (version 20230121) (generator eeschema)
+
+  (uuid c551c393-3eaa-493e-8775-6217daf7eece)
+
+  (paper "A4")
+
+  (title_block
+    (title "CALCULATOR")
+    (date "2023-06-15")
+  )
+
+  (lib_symbols
+  )
+
+
+  (sheet (at 40.64 26.67) (size 46.99 25.4) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 1db0f28c-5fb3-4726-8407-1a011b80b783)
+    (property "Sheetname" "power" (at 40.64 25.9584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "power.kicad_sch" (at 40.64 52.6546 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "calculator"
+        (path "/c551c393-3eaa-493e-8775-6217daf7eece" (page "2"))
+      )
+    )
+  )
+
+  (sheet (at 40.64 137.16) (size 46.99 26.67) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 22d7aced-bce9-4b38-9713-01e05f22f544)
+    (property "Sheetname" "SevenSegment" (at 40.64 136.4484 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "SevenSeg.kicad_sch" (at 40.64 164.4146 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "calculator"
+        (path "/c551c393-3eaa-493e-8775-6217daf7eece" (page "5"))
+      )
+    )
+  )
+
+  (sheet (at 40.64 102.87) (size 46.99 25.4) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 9f2b5747-4299-4088-bf93-b5072a66a565)
+    (property "Sheetname" "FPGA" (at 40.64 102.1584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "FPGA.kicad_sch" (at 40.64 128.8546 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "calculator"
+        (path "/c551c393-3eaa-493e-8775-6217daf7eece" (page "4"))
+      )
+    )
+  )
+
+  (sheet (at 40.64 64.77) (size 46.99 24.13) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid cbb934fa-8251-40d5-911c-ccb6ddf30dce)
+    (property "Sheetname" "Keypad" (at 40.64 64.0584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "keypad.kicad_sch" (at 40.64 89.4846 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "calculator"
+        (path "/c551c393-3eaa-493e-8775-6217daf7eece" (page "3"))
+      )
+    )
+  )
+
+  (sheet (at 100.33 25.4) (size 46.99 26.67) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid f6e432d8-c269-4d21-b44a-a6421cab76d0)
+    (property "Sheetname" "FPGA JTGA Interface" (at 100.33 24.6884 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "FPGAJTGAINTERFACE.kicad_sch" (at 100.33 52.6546 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "calculator"
+        (path "/c551c393-3eaa-493e-8775-6217daf7eece" (page "6"))
+      )
+    )
+  )
+
+  (sheet_instances
+    (path "/" (page "2"))
+  )
+)
